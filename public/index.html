@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Chat Room</title>
+</head>
+<body>
+   <div><header>
+        <nav>
+            <div >
+            <ul>
+                 <a href="/" class="/">Chat-Room</a>
+           <a href="about" class="about">               about</a>
+            <a href="contact" class="contact">          contact</a>
+        
+        </ul>
+        </div>
+              
+            
+        </nav>
+    </header></div> 
+
+    <div class="chat-container">
+        <div class="chat-header">Chat Room</div>
+        <div class="chat-messages " id="messages"></div>
+        <div class="chat-input mx-5 my-5">
+            <input type="text" class="mx-3 my-4" id="message" placeholder="Type your message...">
+            <button onclick="sendbtn" id = "btnsend">Send</button>
+        </div>
+    </div>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        const sendbtn = document.addEventListener("btnsend");
+        const mesaageinput = document.addEventListener("message");
+        const allmessage = document.addEventListener("messages");
+        
+        socket.on(message , ()=>{
+            console.log("the new meessage from the user is  : ", message);
+            const li = document.createElement("li");
+            li.innerText = message;
+            allmessages.appendChild(li);
+
+        })
+
+
+        sendbtn.addEventListener('click', (e)=>{
+        const message = messageinput.value;
+        console.log(message);
+    socket.emit("user-message",message)}
+        )
+
+    </script>
+</body>
+</html>
